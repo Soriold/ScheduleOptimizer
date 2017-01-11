@@ -1,0 +1,37 @@
+{% extends "templates/base.html.jinja" %}
+{% block header %}
+<script src="/static/js/rosefire.js"></script>
+<script src="/static/js/login.js"></script>
+{% endblock %}
+{% block content %}
+<div style="margin: 30px">
+  {% if user_info is defined %}
+	  <p>
+	    You are logged in as {{ user_info.name }}.
+	  </p>
+	  <ul>
+		  <li><b>username:</b> {{ user_info.username }}</li>
+		  <li><b>email:</b> {{ user_info.email }}</li>
+		  <li><b>role:</b> {{ user_info.role }}</li>
+	  </ul>
+	  <div>
+	    <a href="/logout" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+	      Logout
+	    </a>
+	  </div>
+  {% else %}
+  	  <div class="panel panel-default login-panel">
+	  	  <div class="panel-heading">
+			  <h3 class="login panel-title">
+			    Log in with your Rose-Hulman username to access the optimizer.
+			  </h3>
+		  </div>
+		  <div class="panel-body logic">
+		    <button id="login" class="btn btn-danger">
+			  Login
+			</button>
+		  </div>
+	  </div>
+  {% endif %}
+</div>
+{% endblock %}

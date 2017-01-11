@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>Project name</title>
+
+<!-- Font Awesome has a bunch of handy icons that are easy to use (optional) -->
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"> -->
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+<!-- Optional -->
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/static/css/style.css">
+
+<!-- Note many developers load js last. I like to cheat and put little script snippets in my html sometimes,
+       so I load my JS in the header and use the $(document).ready() jQuery approach for any running JS code. -->
+
+<!-- Bootstrap and jQuery JS -->
+<script src="/static/js/jquery-2.2.3.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/static/js/rosefire.js"></script>
+<script src="/static/js/main.js"></script>
+
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Brand</a>
+			</div>
+
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Link</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+							<li class="divider"></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Link</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		{% if user_info is defined %}
+		<p>You are logged in as {{ user_info.name }}.</p>
+		<ul>
+			<li><b>username:</b> {{ user_info.username }}</li>
+			<li><b>email:</b> {{ user_info.email }}</li>
+			<li><b>role:</b> {{ user_info.role }}</li>
+		</ul>
+		<div>
+			<a href="/logout" class="btn btn-danger"> Logout </a>
+		</div>
+		{% else %}
+		<p>You are not logged in.</p>
+		<div>
+			<button id="login" class="btn btn-primary">Login</button>
+		</div>
+		{% endif %}
+	</div>
+</body>
+
+</html>

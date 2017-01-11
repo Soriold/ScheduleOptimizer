@@ -1,0 +1,11 @@
+/* Add CSS rules here. */
+
+body {
+  padding-top: 50px;
+}
+
+.login-panel {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
