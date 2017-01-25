@@ -81,8 +81,26 @@ config['webapp2_extras.sessions'] = {
     'secret_key': 'BtVrAIrkLfN163ft4opm',
 }
 
+class ResultHandler(BaseHandler):
+    def get(self):
+        template = JINJA_ENV.get_template("templates/results.html.jinja")
+        self.response.out.write(template.render({"user_info": self.session["user_info"]}))
+        
+class FavoritesHandler(BaseHandler):
+    def get(self):
+        template = JINJA_ENV.get_template("templates/favorites.html.jinja")
+        self.response.out.write(template.render({"user_info": self.session["user_info"]}))
+
+config = {}
+config['webapp2_extras.sessions'] = {
+    # This key is used to encrypt your sessions
+    'secret_key': 'BtVrAIrkLfN163ft4opm',
+}
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/login', LoginHandler),
     ('/logout', LogoutHandler),
+    ('/results', ResultHandler),
+    ('/favorites', FavoritesHandler)
 ], config=config, debug=True)

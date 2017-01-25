@@ -6,19 +6,124 @@
 {% block content %}
 <div style="margin: 30px">
   {% if user_info is defined %}
-	  <p>
-	    You are logged in as {{ user_info.name }}.
-	  </p>
-	  <ul>
-		  <li><b>username:</b> {{ user_info.username }}</li>
-		  <li><b>email:</b> {{ user_info.email }}</li>
-		  <li><b>role:</b> {{ user_info.role }}</li>
-	  </ul>
-	  <div>
-	    <a href="/logout" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-	      Logout
-	    </a>
-	  </div>
+  <div class="well bs-component">
+	  <form class="form-horizontal" action="/results">
+  <fieldset>
+    <legend>Schedule Search</legend>
+    <h6>Classes</h6>
+    <div class="form-group classes">
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="classOne" placeholder="CSSE120">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="classTwo" placeholder="MA211">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="classThree" placeholder="PH111">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="classFour" placeholder="IA152">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="classFive" placeholder="">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="classSix" placeholder="">
+      </div>
+    </div>
+    <h6>Allowed Periods</h6>
+    <div class="form-group">
+      <div class="col-lg-10">
+        <div class="checkbox">
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period1" value="1" checked="true">
+            1
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period2" value="2" checked="true">
+            2
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period3" value="3" checked="true">
+            3
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period4" value="4" checked="true">
+            4
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period5" value="5" checked="true">
+            5
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period6" value="6" checked="true">
+            6
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period7" value="7" checked="true">
+            7
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period8" value="8" checked="true">
+            8
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period9" value="9" checked="true">
+            9
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="period10" value="10" checked="true">
+            10
+          </label>
+          <label class="periodCheckbox">
+            <input type="checkbox" name="periodOptions" id="periodOther" value="0" checked="true">
+            Other
+          </label>
+        </div>
+      </div>
+    </div>
+	<h6> Weekend Wednesdays? </h6>
+	<div class="form-group">
+		<div class="col-lg-10">
+			<div class="checkbox">
+	          <label class="wednesdayRadio">
+	            <input type="radio" name="wednesdayRadio" id="yesWednesday" value="1" checked="">
+	            Yes
+	          </label>
+	          <label class="wednesdayRadio">
+	            <input type="radio" name="wednesdayRadio" id="noWednesday" value="0" checked="">
+	            No
+	          </label>
+	        </div>
+        </div>
+	</div>
+	<h6>I want professors above a rating of...</h6>
+	<div id="rating">0</div>
+	<script type="text/javascript">
+		function showValue(newValue) {
+			document.getElementById("rating").innerHTML=newValue;
+		}
+	</script>
+	<input id="profRating" type="range" value="0" min="0" max="5" step=".1" onchange="showValue(this.value)">
+    <div id="searchButton" class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-success">Search</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+</div>
   {% else %}
   	  <div class="panel panel-default login-panel">
 	  	  <div class="panel-heading">
