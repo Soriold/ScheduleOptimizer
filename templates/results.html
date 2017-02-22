@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.0/css/bootstrap-slider.css">
+<link rel= href="/static/css/bootstrap-slider.min.css">
+<!-- Optional -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.0/bootstrap-slider.js"></script>
+<script src="static/js/edit.js"></script>
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+  {% block header %}{% endblock %}
+</head>
+<body>
+<div id="fav-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Favorite</h4>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to add this schedule to your favorites?</p>
+      </div>
+      <div class="modal-footer">
+      	<form action="/favschedule" method="post" class="form-horizontal">
+        	<input name="entity" type="text" class="hidden">
+        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+       		<button type="submit" class="btn btn-success">Favorite</button>
+       	</form>	
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<img src="rosehulman.jpg">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Schedule Optimizer</a>
+    </div>
+    <div class="collapse navbar-collapse">
+    	      {% if user_info is defined %}
+      <div class="pull-right user-buttons">
+      	<a href="/favorites" class ="btn btn-primary favorites-button">Favorites</a>
+      	<a href="/logout" class="btn btn-danger logout-button">Logout</a>
+      </div>
+      {% endif %}
+    </div>
+</nav>
+<div style="margin: 30px">
+<div class="well bs-component">
+{% for schedule in schedules %}
+	<table class="table table-striped course-info">
+	<div class="pull-left">
+        <h6 class="schedule-name">Option {{schedules.index(schedule) + 1}}</h6>
+    </div>
+    <div class="pull-right">
+    	<button type="button" data-toggle="modal" data-target="#fav-modal" class="btn btn-success fav-button">
+    		<i class="fa fa-heart" aria-hidden="true"></i>
+    		<div class="hidden entity">{{ schedule.id }}</div>
+    	</button>
+    </div>
+	  <thead>
+	    <tr>
+	      <th>Course #</th>
+	      <th>CRN</th>
+	      <th>Course Name</th>
+	      <th>Instructor</th>
+	      <th>Days</th>
+	      <th>Period</th>
+	      <th>Credits</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    {% for class in schedule.classes %}
+	    <tr>
+	      <td>{{class.courseNum}}</td>
+	      <td>{{class.CRN}}</td>
+	      <td>{{class.courseName}}</td>
+	      <td>{{class.prof}}</td>
+	      <td>{{class.days}}</td>
+	      <td>{{class.periods}}</td>
+	      <td>{{class.credits}}</td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table> 
+	<br>
+	<table class="table table-striped course-info">
+	  <thead>
+	    <tr>
+	      <th></th>
+	      <th>Monday</th>
+	      <th>Tuesday</th>
+	      <th>Wednesday</th>
+	      <th>Thursday</th>
+	      <th>Friday</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<tr>
+	  	  <td>1</br>8:05-8:55</td>
+	      <td>{{schedule.schedule[1][1]}}</td>
+	      <td>{{schedule.schedule[1][2]}}</td>
+	      <td>{{schedule.schedule[1][3]}}</td>
+	      <td>{{schedule.schedule[1][4]}}</td>
+	      <td>{{schedule.schedule[1][5]}}</td>
+	    </tr>
+	    <tr>
+	  	  <td>2</br>9:00-9:50</td>
+	      <td>{{schedule.schedule[2][1]}}</td>
+	      <td>{{schedule.schedule[2][2]}}</td>
+	      <td>{{schedule.schedule[2][3]}}</td>
+	      <td>{{schedule.schedule[2][4]}}</td>
+	      <td>{{schedule.schedule[2][5]}}</td>
+	    </tr>
+	    <tr>
+	  	  <td>3</br>9:55-10:45</td>
+	      <td>{{schedule.schedule[3][1]}}</td>
+	      <td>{{schedule.schedule[3][2]}}</td>
+	      <td>{{schedule.schedule[3][3]}}</td>
+	      <td>{{schedule.schedule[3][4]}}</td>
+	      <td>{{schedule.schedule[3][5]}}</td>
+	    </tr>
+	    <tr>
+	  	  <td>4</br>10:50-11:40</td>
+	      <td>{{schedule.schedule[4][1]}}</td>
+	      <td>{{schedule.schedule[4][2]}}</td>
+	      <td>{{schedule.schedule[4][3]}}</td>
+	      <td>{{schedule.schedule[4][4]}}</td>
+	      <td>{{schedule.schedule[4][5]}}</td>
+	    </tr>
+	   	<tr>
+	  	  <td>5</br>11:45-12:35</td>
+	      <td>{{schedule.schedule[5][1]}}</td>
+	      <td>{{schedule.schedule[5][2]}}</td>
+	      <td>{{schedule.schedule[5][3]}}</td>
+	      <td>{{schedule.schedule[5][4]}}</td>
+	      <td>{{schedule.schedule[5][5]}}</td>
+	    </tr>
+	    <tr>
+	  	  <td>6</br>12:40-1:30</td>
+	      <td>{{schedule.schedule[6][1]}}</td>
+	      <td>{{schedule.schedule[6][2]}}</td>
+	      <td>{{schedule.schedule[6][3]}}</td>
+	      <td>{{schedule.schedule[6][4]}}</td>
+	      <td>{{schedule.schedule[6][5]}}</td>
+	    </tr>
+	    <tr>
+	  	  <td>7</br>1:35-2:25</td>
+	      <td>{{schedule.schedule[7][1]}}</td>
+	      <td>{{schedule.schedule[7][2]}}</td>
+	      <td>{{schedule.schedule[7][3]}}</td>
+	      <td>{{schedule.schedule[7][4]}}</td>
+	      <td>{{schedule.schedule[7][5]}}</td>
+	    </tr>
+	    <tr>
+	  	  <td>8</br>2:30-3:20</td>
+	      <td>{{schedule.schedule[8][1]}}</td>
+	      <td>{{schedule.schedule[8][2]}}</td>
+	      <td>{{schedule.schedule[8][3]}}</td>
+	      <td>{{schedule.schedule[8][4]}}</td>
+	      <td>{{schedule.schedule[8][5]}}</td>
+	    </tr>
+	    <tr>
+	  	  <td>9</br>3:25-4:15</td>
+	      <td>{{schedule.schedule[9][1]}}</td>
+	      <td>{{schedule.schedule[9][2]}}</td>
+	      <td>{{schedule.schedule[9][3]}}</td>
+	      <td>{{schedule.schedule[9][4]}}</td>
+	      <td>{{schedule.schedule[9][5]}}</td>
+	    </tr>
+	    <tr>
+	  	  <td>10</br>4:20-5:10</td>
+	      <td>{{schedule.schedule[10][1]}}</td>
+	      <td>{{schedule.schedule[10][2]}}</td>
+	      <td>{{schedule.schedule[10][3]}}</td>
+	      <td>{{schedule.schedule[10][4]}}</td>
+	      <td>{{schedule.schedule[10][5]}}</td>
+	    </tr>	    
+	  </tbody>
+	</table> 
+	{% else %}
+	<div class="no-favs">
+		<h5 class="no-favs">No schedules found.</h5>
+		<a href='/' class='btn btn-danger no-favs'>Try again</a>
+		</div>
+	{% endfor %}
+	</div>
+</div>
+</body>
+</html>

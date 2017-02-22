@@ -25,6 +25,10 @@ img {
 	opacity: .5;
 }
 
+.no-favs {
+	text-align: center;
+}
+
 .user-buttons {
 	margin-right: 20px;
 	margin-top: 5px;
@@ -57,14 +61,22 @@ legend {
 	text-align: center;
 }
 
-table td {
-	min-width: 50px;
+table {
+	valign: middle;
+}
+
+td {
+	min-width: 25px;
 	border: 1px solid black !important;
+	text-align: center;
+	max-width: 30px;
+	vertical-align: middle;
 }
 
 table th {
 	min-width: 50px;
 	border: 1px solid black !important;
+	text-align: center;
 }
 
 .login-panel {
@@ -85,4 +97,12 @@ table th {
 
 .fav-button {
 	margin-bottom: 10px;
+}
+
+.centered {
+	text-align: center;
+}
+
+.class {
+	width: 400px;
 }

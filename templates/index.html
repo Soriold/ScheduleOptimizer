@@ -1,4 +1,4 @@
-{% extends "templates/base.html.jinja" %}
+{% extends "templates/base.html" %}
 {% block header %}
 <script src="/static/js/rosefire.js"></script>
 <script src="/static/js/login.js"></script>
@@ -7,41 +7,43 @@
 <div style="margin: 30px">
   {% if user_info is defined %}
   <div class="well bs-component">
-	  <form class="form-horizontal" action="/results">
+  <form action="/results" method="POST">
   <fieldset>
     <legend>Schedule Search</legend>
     <h6>Classes</h6>
     <div class="form-group classes">
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="classOne" placeholder="CSSE120">
+        <input type="text" class="form-control class" name="classOne" placeholder="CSSE120">
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="classTwo" placeholder="MA211">
+        <input type="text" class="form-control class" name="classTwo" placeholder="MA211">
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="classThree" placeholder="PH111">
+        <input type="text" class="form-control class" name="classThree" placeholder="PH111">
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="classFour" placeholder="IA152">
+        <input type="text" class="form-control class" name="classFour" placeholder="IA152">
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="classFive" placeholder="">
+        <input type="text" class="form-control class" name="classFive" placeholder="">
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="classSix" placeholder="">
+        <input type="text" class="form-control class" name="classSix" placeholder="">
       </div>
     </div>
+    </fieldset>
+    <fieldset>
     <h6>Allowed Periods</h6>
     <div class="form-group">
       <div class="col-lg-10">
@@ -93,6 +95,8 @@
         </div>
       </div>
     </div>
+    </fieldset>
+    <fieldset>
 	<h6> Weekend Wednesdays? </h6>
 	<div class="form-group">
 		<div class="col-lg-10">
@@ -108,20 +112,22 @@
 	        </div>
         </div>
 	</div>
+	</fieldset>
+	<fieldset>
 	<h6>I want professors above a rating of...</h6>
-	<div id="rating">0</div>
+	<div id="rating" name="rating">0</div>
 	<script type="text/javascript">
 		function showValue(newValue) {
 			document.getElementById("rating").innerHTML=newValue;
 		}
 	</script>
-	<input id="profRating" type="range" value="0" min="0" max="5" step=".1" onchange="showValue(this.value)">
+	<input id="profRating" name="profRating" type="range" value="0" min="0" max="5" step=".1" onchange="showValue(this.value)">
+	</fieldset>
+	<fieldset class="centered">
     <div id="searchButton" class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
         <button type="submit" class="btn btn-success">Search</button>
-      </div>
     </div>
-  </fieldset>
+    </fieldset>
 </form>
 </div>
   {% else %}
